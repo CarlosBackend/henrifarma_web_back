@@ -37,4 +37,12 @@ public class ClienteService {
        }
        throw new RuntimeException("Cliente não encontrado");
     }
+    public String deleter(Long id){
+        Optional<ClienteModel> clienteExiste = clienteRepository.findById(id);
+        if(clienteExiste.isPresent()){
+            clienteRepository.deleteById(id);
+            return "Cliente deletado com sucesso";
+        }
+        return "Cliente não encontrado";
+    }
 }

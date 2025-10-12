@@ -29,6 +29,16 @@ public class ClienteController {
         return ResponseEntity.ok(clienteService.listarClientes());
     }
 
+    @DeleteMapping("/deletar/{id}")
+    public ResponseEntity<String> deleter(Long id){
+        try{
+            clienteService.deleter(id);
+            return ResponseEntity.ok("Cliente deletado com sucesso");
+        }catch (Exception e){
+            return ResponseEntity.badRequest().body("Erro ao deletar cliente");
+        }
+    }
+
     @PutMapping("/atualizar/{id}")
     public ResponseEntity<String> atualizar(@PathVariable Long id, @RequestBody ClienteModel clienteModel){
         try{
